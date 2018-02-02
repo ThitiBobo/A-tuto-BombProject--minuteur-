@@ -11,35 +11,58 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/activity_main_text_time"
+
+        <Button
+            android:id="@+id/nextButton2"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Start"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="24sp"/>
+
+
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="218dp"
-            android:text="00:00"
-            tools:layout_editor_absoluteX="175dp"
-            tools:layout_editor_absoluteY="50dp"/>
+            android:id="@+id/relativeLayout">
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_marginTop="140dp"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/nextButton2"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="fill_parent"
+
+            <NumberPicker
+                android:id="@+id/numberPicker"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:paddingVertical="25dp"
-                android:text="Start"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="24sp"/>
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                />
+
+            <NumberPicker
+                android:id="@+id/numberPicker2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
 
         </LinearLayout>
+
 
     </RelativeLayout>
 
