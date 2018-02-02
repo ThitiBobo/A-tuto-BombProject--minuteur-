@@ -9,16 +9,47 @@ import android.os.AsyncTask;
 
 public class Timer extends AsyncTask {
 
-    public Timer(Context context,int time,)
+    private final Context cContect;
 
-    @Override
-    protected Object doInBackground(Object[] objects) {
-        try {
+    private int mTime;
 
-        }catch (){
-
-        }
+    public Timer(Context context,int time){
+        cContect = context;
+        mTime = time;
     }
 
+    @Override
+    protected String doInBackground(Object[] objects) {
+        try {
+            while(mTime > 0){
+                Thread.sleep(0);
+                mTime--;
+                publishProgress(mTime);
+            }
 
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return "terminé";
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+    }
+
+    @Override
+    protected void onProgressUpdate(Object[] values) {
+        super.onProgressUpdate(values);
+    }
+
+    @Override
+    protected void onCancelled(Object o) {
+        super.onCancelled(o);
+    }
 }
