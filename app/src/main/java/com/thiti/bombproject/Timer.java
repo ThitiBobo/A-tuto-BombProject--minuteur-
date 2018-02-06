@@ -2,6 +2,7 @@ package com.thiti.bombproject;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 
 /**
  * Created by canard on 02/02/18.
@@ -13,7 +14,7 @@ public class Timer extends AsyncTask {
 
     private int mTime;
 
-    public Timer(Context context,int time){
+    public Timer(Context context,int time,Handler progressBar){
         cContect = context;
         mTime = time;
     }
