@@ -8,10 +8,14 @@
     tools:context="com.thiti.bombproject.MainActivity">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:id="@+id/relativeLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
 
         <Button
@@ -71,6 +75,31 @@
                 android:layout_height="wrap_content"
                 />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_marginLeft="113dp"
+            android:layout_marginStart="113dp"
+            android:layout_marginTop="53dp"
+            android:layout_toEndOf="@+id/relativeLayout"
+            android:layout_toRightOf="@+id/relativeLayout"
+            android:text="TextView"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="95dp"
+            android:layout_marginRight="95dp"
+            android:text="TextView"/>
 
 
     </RelativeLayout>

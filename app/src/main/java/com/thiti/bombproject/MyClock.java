@@ -12,29 +12,23 @@ import android.widget.ProgressBar;
 public class MyClock extends AsyncTask {
 
     private final Context cContect;
-    private ProgressBar mProgressBar;
+    private MyTimer mTimer;
     private int mTime;
-    private int mStatusProgressBar;
 
-    public MyClock(Context context,int time,ProgressBar progressBar){
+    public MyClock(Context context,MyTimer timer,int time){
         cContect = context;
-        mProgressBar = progressBar;
+        mTimer = timer;
         mTime = time;
-        mStatusProgressBar = 100;
-
+        mTimer.setTime(time);
     }
 
     @Override
     protected String doInBackground(Object[] objects) {
         try {
             while(mTime > 0){
-                Thread.sleep(100);
-                mStatusProgressBar--;
-                mTime--;
-                if (mStatusProgressBar < 0){
-                    mStatusProgressBar = 100;
-                }
-                publishProgress(mTime,mStatusProgressBar);
+                Thread.sleep(10);
+                mTimer.onDecrement();
+                publishProgress(mTime);
             }
 
         }catch (InterruptedException e){
@@ -55,9 +49,7 @@ public class MyClock extends AsyncTask {
 
     @Override
     protected void onProgressUpdate(Object[] values) {
-        mProgressBar.setProgress(mStatusProgressBar);
-
-
+        mTimer.display();
     }
 
     @Override

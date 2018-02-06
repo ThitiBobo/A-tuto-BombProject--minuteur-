@@ -6,10 +6,12 @@ package com.thiti.bombproject;
 
 public interface MyTimer {
 
-    public void onIncrementSeconde();
-    public void onDecrementSeconde();
+    public int getTime();
+    public void setTime(int time);
 
-    public void onIncrementMilliSeconde();
-    public void onDecrementMilliSeconde();
+    public void onIncrement();
+    public void onDecrement();
+
+    public void display();
 
 }

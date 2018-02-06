@@ -20,15 +20,17 @@ public class MyFirstTimer implements MyTimer {
 
     private int mStatusProgress;
 
-    private int mMilliseconde;
+    private int mCentiseconde;
     private int mSeconde;
     private int mMinute;
     private int mHours;
 
+    @Override
     public int getTime() {
         return 0;
     }
 
+    @Override
     public void setTime(int time) {
         init(time);
     }
@@ -42,7 +44,7 @@ public class MyFirstTimer implements MyTimer {
     }
 
     private void init(int time){
-        mMilliseconde = 0;
+        mCentiseconde = 0;
         mSeconde = time % 60;
         time = time / 60;
 
@@ -56,6 +58,7 @@ public class MyFirstTimer implements MyTimer {
         display();
     }
 
+    @Override
     public void display(){
         mTimeProgress.setProgress(mStatusProgress);
         if (mHours > 0){
@@ -63,27 +66,52 @@ public class MyFirstTimer implements MyTimer {
             mSecondaryText.setText(":" + mSeconde);
         }else{
             mPrimaryText.setText(mMinute + ":" + mSeconde);
-            mSecondaryText.setText("." + mMilliseconde);
+            mSecondaryText.setText("." + mCentiseconde);
+        }
+    }
+
+
+    @Override
+    public void onIncrement() {
+        mCentiseconde++;
+        if (mCentiseconde > 99){
+            mCentiseconde = 0;
+            mSeconde++;
+            if (mSeconde > 59){
+                mSeconde = 0;
+                mMinute++;
+                if (mMinute > 59){
+                    mMinute= 0;
+                    mMinute++;
+                    if (mMinute > 59){
+                        mMinute = 0;
+                        mHours++;
+                        if(mHours > 23){
+                            init(0);
+                        }
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public void onIncrementSeconde() {
-
-    }
-
-    @Override
-    public void onDecrementSeconde() {
-
-    }
-
-    @Override
-    public void onIncrementMilliSeconde() {
-
-    }
-
-    @Override
-    public void onDecrementMilliSeconde() {
-
+    public void onDecrement() {
+        mCentiseconde--;
+        if (mCentiseconde < 0){
+            mCentiseconde = 99;
+            mSeconde--;
+            if (mSeconde < 0){
+                mSeconde = 59;
+                mMinute--;
+                if (mMinute < 0){
+                    mMinute = 59;
+                    mHours--;
+                    if (mHours < 0){
+                        mHours--;
+                    }
+                }
+            }
+        }
     }
 }
