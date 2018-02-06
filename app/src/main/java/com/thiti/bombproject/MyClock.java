@@ -3,29 +3,38 @@ package com.thiti.bombproject;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.widget.ProgressBar;
 
 /**
  * Created by canard on 02/02/18.
  */
 
-public class Timer extends AsyncTask {
+public class MyClock extends AsyncTask {
 
     private final Context cContect;
-
+    private ProgressBar mProgressBar;
     private int mTime;
+    private int mStatusProgressBar;
 
-    public Timer(Context context,int time,Handler progressBar){
+    public MyClock(Context context,int time,ProgressBar progressBar){
         cContect = context;
+        mProgressBar = progressBar;
         mTime = time;
+        mStatusProgressBar = 100;
+
     }
 
     @Override
     protected String doInBackground(Object[] objects) {
         try {
             while(mTime > 0){
-                Thread.sleep(0);
+                Thread.sleep(100);
+                mStatusProgressBar--;
                 mTime--;
-                publishProgress(mTime);
+                if (mStatusProgressBar < 0){
+                    mStatusProgressBar = 100;
+                }
+                publishProgress(mTime,mStatusProgressBar);
             }
 
         }catch (InterruptedException e){
@@ -46,7 +55,8 @@ public class Timer extends AsyncTask {
 
     @Override
     protected void onProgressUpdate(Object[] values) {
-        super.onProgressUpdate(values);
+        mProgressBar.setProgress(mStatusProgressBar);
+
     }
 
     @Override
