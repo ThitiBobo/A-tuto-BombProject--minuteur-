@@ -9,29 +9,62 @@ import android.widget.TextView;
 
 public class MyFirstTimer implements MyTimer {
 
+    /**
+     *
+     */
     private static final int TIME_MINUTE = 60;
 
     private ProgressBar mTimeProgress;
-    private TextView mTimeText;
+    private TextView mPrimaryText;
+    private TextView mSecondaryText;
 
     private int mStatusProgress;
-    private int mTime;
+
+    private int mMilliseconde;
+    private int mSeconde;
+    private int mMinute;
+    private int mHours;
 
     public int getTime() {
-        mStatusProgress = TIME_MINUTE;
-        return mTime;
+        return 0;
     }
 
-    public void setTime(int seconde) {
-        ///calcule a faire
-        mTime = seconde;
+    public void setTime(int time) {
+        init(time);
     }
 
-    public MyFirstTimer(ProgressBar progressBar, TextView text){
+
+    public MyFirstTimer(ProgressBar progressBar, TextView primaryText, TextView secondaryText){
         mTimeProgress = progressBar;
-        mTimeText = text;
-        mTime = 0;
-        mStatusProgress = 0;
+        mPrimaryText = primaryText;
+        mSecondaryText = secondaryText;
+        init(0);
+    }
+
+    private void init(int time){
+        mMilliseconde = 0;
+        mSeconde = time % 60;
+        time = time / 60;
+
+        mMinute = time % 60;
+        time = time / 60;
+
+        mHours = time % 60;
+        time = time / 60;
+
+        mStatusProgress = mSeconde;
+        display();
+    }
+
+    public void display(){
+        mTimeProgress.setProgress(mStatusProgress);
+        if (mHours > 0){
+            mPrimaryText.setText(mHours + "h" + mMinute);
+            mSecondaryText.setText(":" + mSeconde);
+        }else{
+            mPrimaryText.setText(mMinute + ":" + mSeconde);
+            mSecondaryText.setText("." + mMilliseconde);
+        }
     }
 
     @Override

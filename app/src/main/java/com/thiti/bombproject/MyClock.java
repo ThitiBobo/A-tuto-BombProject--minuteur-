@@ -57,6 +57,7 @@ public class MyClock extends AsyncTask {
     protected void onProgressUpdate(Object[] values) {
         mProgressBar.setProgress(mStatusProgressBar);
 
+
     }
 
     @Override
