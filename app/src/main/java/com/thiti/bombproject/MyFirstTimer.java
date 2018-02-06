@@ -54,7 +54,7 @@ public class MyFirstTimer implements MyTimer {
         mHours = time % 60;
         time = time / 60;
 
-        mStatusProgress = mSeconde;
+        mStatusProgress = 100;
         display();
     }
 
@@ -68,6 +68,8 @@ public class MyFirstTimer implements MyTimer {
             mPrimaryText.setText(mMinute + ":" + mSeconde);
             mSecondaryText.setText("." + mCentiseconde);
         }
+
+        mTimeProgress.setProgress(mStatusProgress);
     }
 
 
@@ -101,6 +103,10 @@ public class MyFirstTimer implements MyTimer {
         if (mCentiseconde < 0){
             mCentiseconde = 99;
             mSeconde--;
+            mStatusProgress--;
+            if (mStatusProgress < 0){
+                mStatusProgress = 99;
+            }
             if (mSeconde < 0){
                 mSeconde = 59;
                 mMinute--;
@@ -113,5 +119,6 @@ public class MyFirstTimer implements MyTimer {
                 }
             }
         }
+
     }
 }
