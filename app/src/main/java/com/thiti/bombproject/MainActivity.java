@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // les widgets
     private NumberPicker mNumberPickerMinute;
     private NumberPicker mNumberPickerHeure;
     private NumberPicker mNumberPickerSeconde;
@@ -21,9 +22,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mSecondaryText;
     private Button mStartButton;
 
+    /**
+     * un objet Myclock mClock
+     * un afficheur mDisplay
+     */
     private MyClock mClock;
     private TimeDisplay mDisplay;
 
+    //création de l'acivité
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPrimaryText = (TextView)findViewById(R.id.activity_main_primary_text);
         mStartButton = (Button)findViewById(R.id.activity_main_start_button);
 
+        // initialisation des numberPickers
         mNumberPickerHeure.setMinValue(0);
         mNumberPickerHeure.setMaxValue(24);
         mNumberPickerHeure.setWrapSelectorWheel(true);
@@ -49,12 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mNumberPickerSeconde.setMaxValue(60);
         mNumberPickerSeconde.setWrapSelectorWheel(true);
 
+        // paramétrage du texte du boutton en vert foncé ^^
         mStartButton.setTextColor(Color.rgb(0,150,0));
 
         mDisplay = new DisplayProgressBar(mProgressBar,mPrimaryText,mSecondaryText);
 
         mStartButton.setOnClickListener(this);
-
     }
 
     @Override
@@ -96,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * convertit les données des numberPicker en centiseconde
+     * @return les centisecondes en long
+     */
     private long getTime(){
         long time = mNumberPickerHeure.getValue();
         time = time * 60 + mNumberPickerMinute.getValue();
