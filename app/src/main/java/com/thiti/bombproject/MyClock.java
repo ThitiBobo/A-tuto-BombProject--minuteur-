@@ -19,6 +19,8 @@ public class MyClock extends AsyncTask {
         mTime = time;
     }
 
+    public long getTime(){return  mTime;}
+
     public MyClock(Context context,TimeDisplay timeDisplay,long time){
         cContext = context;
         mTimeDisplay = timeDisplay;
@@ -57,7 +59,5 @@ public class MyClock extends AsyncTask {
     }
 
     @Override
-    protected void onCancelled(Object o) {
-        Toast.makeText(cContext, "Stop", Toast.LENGTH_SHORT).show();
-    }
+    protected void onCancelled(Object o) { mTimeDisplay.display(0);}
 }

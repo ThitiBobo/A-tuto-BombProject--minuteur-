@@ -11,7 +11,7 @@
         </shape>
     </item>
     <item android:id="@android:id/progress">
-        <clip android:clipOrientation="vertical" android:gravity="bottom">
+        <clip android:clipOrientation="horizontal" android:gravity="bottom">
             <shape
                 android:innerRadiusRatio="3"
                 android:shape="ring"

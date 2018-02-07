@@ -68,7 +68,7 @@ public class DisplayProgressBar implements TimeDisplay {
         mHours = (int)time % 60;
         time = time / 60;
 
-        mStatusProgress = new Integer(((mMinute / 60) * mTimeProgress.getMax()));
+        //mStatusProgress = mSeconde;
         //mStatusProgress = mTimeProgress.getMax() - 15;
     }
 
