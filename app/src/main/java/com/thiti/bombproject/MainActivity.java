@@ -2,6 +2,7 @@ package com.thiti.bombproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
@@ -11,17 +12,25 @@ public class MainActivity extends AppCompatActivity {
 
     private NumberPicker mNumberPickerMinute;
     private NumberPicker mNumberPickerHeure;
+    private ProgressBar mProgressBar;
+    private TextView mPrimaryText;
+    private TextView mSecondaryText;
+    private Button mStartButton;
+
+    private MyClock mClock;
+    private boolean mClockActif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNumberPickerHeure = (NumberPicker)findViewById(R.id.numberPicker);
+        mNumberPickerHeure = (NumberPicker)findViewById(R.id.numberPicker1);
         mNumberPickerMinute = (NumberPicker)findViewById(R.id.numberPicker2);
-        ProgressBar pb = (ProgressBar)findViewById(R.id.pb);
-        TextView t2 = (TextView)findViewById(R.id.textView2);
-        TextView t1 = (TextView)findViewById(R.id.textView);
+        mProgressBar = (ProgressBar)findViewById(R.id.activity_main_time_progressbar);
+        mSecondaryText = (TextView)findViewById(R.id.activity_main_secondary_text);
+        mPrimaryText = (TextView)findViewById(R.id.activity_main_primary_text);
+        mStartButton = (Button)findViewById(R.id.activity_main_start_button);
 
         mNumberPickerHeure.setMinValue(0);
         mNumberPickerHeure.setMaxValue(24);
@@ -32,15 +41,29 @@ public class MainActivity extends AppCompatActivity {
         mNumberPickerMinute.setWrapSelectorWheel(true);
 
 
-        //MyTimer truc = new MyFirstTimer(pb,t1,t2);
+        mClock = new MyClock(
+                this,
+                new DisplayProgressBar(mProgressBar,mPrimaryText,mSecondaryText),
+                0
+        );
+        mClockActif = false;
 
-        //new MyClock(this,truc,3610).execute();
-
-        /*
-        Timer tm = new Timer(this,3000,pb);
-        tm.execute();
-        */
-
+        mStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mClockActif){
+                    mClock.setTime(mNumberPickerMinute.getValue()*60*100);
+                    mClock.execute();
+                    mStartButton.setText("Stop");
+                    mClockActif = true;
+                }
+                else{
+                    mClock.cancel(true);
+                    mStartButton.setText("Start");
+                    mClockActif = false;
+                }
+            }
+        });
 
     }
 }

@@ -2,9 +2,6 @@ package com.thiti.bombproject;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.SystemClock;
-
-import java.sql.Time;
 
 
 /**
@@ -16,6 +13,10 @@ public class MyClock extends AsyncTask {
     private final Context cContect;
     private TimeDisplay mTimeDisplay;
     private long mTime;
+
+    public void setTime(long time){
+        mTime = time;
+    }
 
     public MyClock(Context context,TimeDisplay timeDisplay,long time){
         cContect = context;
