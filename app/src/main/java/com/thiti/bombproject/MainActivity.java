@@ -85,9 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onSaveInstanceState(Bundle outState) {
         if(mClock != null){
            mClock.cancel(true);
+           outState.putLong("time",mClock.getTime());
         }
         super.onSaveInstanceState(outState);
-        outState.putLong("time",mClock.getTime());
+
 
     }
 
