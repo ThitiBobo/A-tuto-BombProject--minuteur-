@@ -1,5 +1,7 @@
 package com.thiti.bombproject;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mNumberPickerMinute.setMaxValue(60);
         mNumberPickerMinute.setWrapSelectorWheel(true);
 
+        mStartButton.setTextColor(Color.rgb(0,150,0));
 
         mClock = new MyClock(
                 this,
@@ -54,11 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 if (!mClockActif){
                     mClock.setTime(mNumberPickerMinute.getValue()*60*100);
                     mClock.execute();
+                    mStartButton.setTextColor(Color.RED);
                     mStartButton.setText("Stop");
                     mClockActif = true;
                 }
                 else{
                     mClock.cancel(true);
+                    mStartButton.setTextColor(Color.rgb(0,150,0));
                     mStartButton.setText("Start");
                     mClockActif = false;
                 }

@@ -2,6 +2,7 @@ package com.thiti.bombproject;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 
 /**
@@ -10,7 +11,7 @@ import android.os.AsyncTask;
 
 public class MyClock extends AsyncTask {
 
-    private final Context cContect;
+    private final Context cContext;
     private TimeDisplay mTimeDisplay;
     private long mTime;
 
@@ -19,7 +20,7 @@ public class MyClock extends AsyncTask {
     }
 
     public MyClock(Context context,TimeDisplay timeDisplay,long time){
-        cContect = context;
+        cContext = context;
         mTimeDisplay = timeDisplay;
         mTime = time;
 
@@ -42,12 +43,12 @@ public class MyClock extends AsyncTask {
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+        mTimeDisplay.display(mTime);
     }
 
     @Override
     protected void onPostExecute(Object o) {
-        super.onPostExecute(o);
+        mTimeDisplay.display(mTime);
     }
 
     @Override
@@ -57,6 +58,6 @@ public class MyClock extends AsyncTask {
 
     @Override
     protected void onCancelled(Object o) {
-        super.onCancelled(o);
+        Toast.makeText(cContext, "Stop", Toast.LENGTH_SHORT).show();
     }
 }

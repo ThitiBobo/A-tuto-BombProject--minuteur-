@@ -21,7 +21,6 @@
             android:layout_alignParentBottom="true"
             android:paddingVertical="20dp"
             android:text="Start"
-            android:textColor="@android:color/holo_green_dark"
             android:textSize="24sp"/>
 
 
