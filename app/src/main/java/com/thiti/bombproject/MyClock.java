@@ -2,8 +2,10 @@ package com.thiti.bombproject;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.widget.ProgressBar;
+import android.os.SystemClock;
+
+import java.sql.Time;
+
 
 /**
  * Created by canard on 02/02/18.
@@ -12,14 +14,14 @@ import android.widget.ProgressBar;
 public class MyClock extends AsyncTask {
 
     private final Context cContect;
-    private MyTimer mTimer;
-    private int mTime;
+    private TimeDisplay mTimeDisplay;
+    private long mTime;
 
-    public MyClock(Context context,MyTimer timer,int time){
+    public MyClock(Context context,TimeDisplay timeDisplay,long time){
         cContect = context;
-        mTimer = timer;
+        mTimeDisplay = timeDisplay;
         mTime = time;
-        mTimer.setTime(time);
+
     }
 
     @Override
@@ -27,7 +29,7 @@ public class MyClock extends AsyncTask {
         try {
             while(mTime > 0){
                 Thread.sleep(10);
-                mTimer.onDecrement();
+                mTime--;
                 publishProgress(mTime);
             }
 
@@ -49,7 +51,7 @@ public class MyClock extends AsyncTask {
 
     @Override
     protected void onProgressUpdate(Object[] values) {
-        mTimer.display();
+        mTimeDisplay.display(mTime);
     }
 
     @Override

@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         mNumberPickerMinute.setWrapSelectorWheel(true);
 
 
-        MyTimer truc = new MyFirstTimer(pb,t1,t2);
+        //MyTimer truc = new MyFirstTimer(pb,t1,t2);
 
-        new MyClock(this,truc,3610).execute();
+        //new MyClock(this,truc,3610).execute();
 
         /*
         Timer tm = new Timer(this,3000,pb);
